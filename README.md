@@ -1,7 +1,7 @@
 # Nmap Scanning Lab (Cybersecurity Project)
 
 ## Objective
-To perform network scanning using Nmap and identify live hosts, open ports, running services, and analyze the security posture of systems.
+To perform network scanning using Nmap to identify live hosts, open ports, running services, and analyze the security posture of systems.
 
 ---
 
@@ -11,12 +11,18 @@ To perform network scanning using Nmap and identify live hosts, open ports, runn
 
 ---
 
+## Network Range
+192.168.64.0/24
+
+---
+
 ## Step 1: Host Discovery
 
-Command:
+```bash
 nmap -sn 192.168.64.0/24
+```
 
-Result:
+**Result:**
 - 192.168.64.1
 - 192.168.64.2
 - 192.168.64.254
@@ -26,10 +32,11 @@ Result:
 
 ## Step 2: Port Scanning
 
-Command:
+```bash
 nmap 192.168.64.1
+```
 
-Open Ports:
+**Open Ports:**
 - 902/tcp
 - 912/tcp
 - 5357/tcp
@@ -38,10 +45,11 @@ Open Ports:
 
 ## Step 3: Service Detection
 
-Command:
+```bash
 nmap -sV 192.168.64.1
+```
 
-Findings:
+**Findings:**
 - VMware Authentication Daemon
 - Microsoft HTTPAPI
 
@@ -49,61 +57,82 @@ Findings:
 
 ## Step 4: OS Detection
 
-Command:
+```bash
 nmap -A 192.168.64.1
+```
 
-Result:
+**Result:**
 - Windows 10/11 (approx)
 
 ---
 
 ## Step 5: Second Target Analysis
 
-Command:
+```bash
 nmap -sV 192.168.64.2
+```
 
-Result:
+**Result:**
 - Port 53 (DNS) filtered
 
 ---
 
 ## Step 6: Full Port Scan
 
-Command:
+```bash
 nmap -p- 192.168.64.2
+```
 
-Result:
+**Result:**
 - No additional ports found
 
 ---
 
 ## Step 7: Self Scan
 
-Command:
+```bash
 nmap 192.168.64.128
+```
 
-Result:
+**Result:**
 - Port 22 (SSH) open
 
 ---
 
 ## Step 8: Localhost Scan
 
-Command:
+```bash
 nmap localhost
+```
 
-Observation:
+**Observation:**
 - Ports appear closed instead of filtered
 
 ---
 
 ## Step 9: Stealth Scan
 
-Command:
+```bash
 nmap -sS 192.168.64.1
+```
 
-Purpose:
+**Purpose:**
 - Perform stealth scanning using SYN scan
+
+---
+
+## Security Analysis
+
+- System 192.168.64.1 has multiple open ports, increasing attack surface
+- VMware services may be targeted if vulnerabilities exist
+- System 192.168.64.2 is more secure with minimal exposure
+- SSH service on local machine could be targeted by brute-force attacks
+
+---
+
+## Real-world Use Case
+
+This type of scanning is used by SOC analysts and penetration testers to identify exposed services, detect misconfigurations, and assess network security posture.
 
 ---
 
@@ -111,7 +140,7 @@ Purpose:
 
 - Identified live hosts in a network
 - Performed port scanning and service detection
-- Understood difference between open, closed, filtered ports
+- Understood difference between open, closed, and filtered ports
 - Learned OS detection using Nmap
 - Compared security posture of systems
 - Understood stealth scanning techniques
@@ -120,4 +149,4 @@ Purpose:
 
 ## Conclusion
 
-This project demonstrates how attackers and security analysts perform network reconnaissance to identify exposed services and evaluate system security.
+This project demonstrates how network reconnaissance is performed to identify exposed services and evaluate system security.
